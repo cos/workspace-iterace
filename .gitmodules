@@ -1,0 +1,15 @@
+[submodule "wala"]
+	path = wala
+	url = git@github.com:cos/wala.git
+[submodule "WALAFacade"]
+	path = WALAFacade
+	url = git@github.com:cos/WALAFacade.git
+[submodule "Util"]
+	path = Util
+	url = git@github.com:cos/Util.git
+[submodule "privatization"]
+	path = privatization
+	url = git@github.com:cos/privatization.git
+[submodule "ParallelArray-mock"]
+	path = ParallelArray-mock
+	url = git@github.com:cos/ParallelArray-mock.git
