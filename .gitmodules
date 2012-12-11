@@ -11,3 +11,6 @@
 	path = ParallelArray-mock
 	url = git@github.com:cos/ParallelArray-mock.git
 	
+[submodule "IteRace"]
+	path = IteRace
+	url = git@github.com:cos/IteRace.git
