@@ -4,3 +4,4 @@ target/
 /project/.project
 /project/.classpath
 /bedrock_log.log
+/benchmarks/
