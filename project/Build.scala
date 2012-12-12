@@ -15,5 +15,5 @@ object WorkspaceBuild extends Build with Common {
       parallelArrayMock)
 
   lazy val parallelArrayMock = Project(id = "ParallelArray-mock",
-    base = file("ParallelArray-mock"))
+    base = file("lib/parallelArray.mock"))
 }
