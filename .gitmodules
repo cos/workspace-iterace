@@ -7,8 +7,8 @@
 [submodule "Util"]
 	path = Util
 	url = git@github.com:cos/Util.git
-[submodule "ParallelArray-mock"]
-	path = ParallelArray-mock
+[submodule "lib/parallelArray.mock"]
+	path = lib/parallelArray.mock
 	url = git@github.com:cos/ParallelArray-mock.git
 	
 [submodule "IteRace"]
