@@ -14,6 +14,3 @@
 [submodule "IteRace"]
 	path = IteRace
 	url = git@github.com:cos/IteRace.git
-[submodule "benchmarks/junit"]
-	path = benchmarks/junit
-	url = git@github.com:unibench/junit.git
