@@ -14,3 +14,6 @@
 [submodule "IteRace"]
 	path = IteRace
 	url = git@github.com:cos/IteRace.git
+[submodule "lib/parallelArray.threads"]
+	path = lib/parallelArray.threads
+	url = git@github.com:cos/parallelArray.threads.git
