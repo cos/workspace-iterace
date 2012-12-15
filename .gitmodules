@@ -7,9 +7,6 @@
 [submodule "Util"]
 	path = Util
 	url = git@github.com:cos/Util.git
-[submodule "privatization"]
-	path = privatization
-	url = git@github.com:cos/privatization.git
 [submodule "ParallelArray-mock"]
 	path = ParallelArray-mock
 	url = git@github.com:cos/ParallelArray-mock.git
