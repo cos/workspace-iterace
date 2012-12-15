@@ -1,7 +1,7 @@
 import sbt._
 import Keys._
 
-object WorkspaceBuild extends Build with Common {
+object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val workspace = Project(id = "workspace",
     base = file(".")) aggregate (iteRace)
 
@@ -14,6 +14,6 @@ object WorkspaceBuild extends Build with Common {
       walaCore, 
       parallelArrayMock)
 
-  lazy val parallelArrayMock = Project(id = "ParallelArray-mock",
-    base = file("lib/parallelArray.mock"))
+  lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
+  
 }
