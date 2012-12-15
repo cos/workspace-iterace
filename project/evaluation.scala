@@ -19,7 +19,8 @@ trait Evaluate { self: Build =>
 	case class StringAxis(val name: String, val configPath: String, val points: List[String]) extends Axis {
 	  def value(s: String) = s
 	}
-	case class BooleanAxis(val name: String, val configPath: String, val points: List[Boolean]) extends Axis {
+	case class BooleanAxis(val name: String, val configPath: String) extends Axis {
+    val points = List(true, false)
 	  def value(s: String) = s(0) match { case 't' => true; case 'f' => false }
 	}
 
