@@ -19,7 +19,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
 
   lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
 
-  val projectAxis = StringAxis("project", "project", List("BH", "EM3D"))
+  val projectAxis = StringAxis("project", "project", List("bh", "coref", "em3d", "junit", "lucene", "mc", "weka"))
   
   def axes = List(projectAxis) ++ (
     List("two-threads", "known-safe-filtering", "bubble-up", "deep-synchronized", "app-level-synchronized") map { axis =>
@@ -33,7 +33,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val benchTask = Keys.bench <<= InputTask(parser)(benchDef)
 
   lazy val benchDef = (parsed: TaskKey[Scenario]) => {
-    (fullClasspath in (iteRace, Test), mainClass in (iteRace, Test, run), runner in (iteRace, Runtime, run), streams, parsed) map { (cp, mc, r, s, scenario) => { 
+    (fullClasspath in (iteRace, Test), mainClass in (iteRace, Test, run), runner in (iteRace, Test, run), streams, parsed) map { (cp, mc, r, s, scenario) => { 
       	val arguments = Seq(scenario(projectAxis).asInstanceOf[String])
       	scenario foreach {println(_)}
       	val options = scenario filter { case (_, v:Boolean) => v; case _ => false } map {case (k, _) => k.toString}
