@@ -52,11 +52,11 @@ trait Evaluate { self: Build =>
 	
 	// Autocomplete stuff
 	
-  val parser = (state: State) =>
-    (((axes map { ' ' ~> axisParser(_) } reduce { _ | _ } *) map { _ toMap }): Parser[Scenario])
+  val parser = (state: State) => 
+    (((axes map {axis => token(' ' ~> axisParser(axis)) } reduce { _ | _ } *) map { _ toMap }): Parser[Scenario])
 		
 	def axisParser(x: Axis): Parser[(Axis, Any)] = x match {
-      case x: BooleanAxis => token(x.name | ("!" ~ x.name)) map {m => (x, m.toString.startsWith("!"))}
+      case x: BooleanAxis => (token(x.name) ~ '!'.?) map {m => (x, !m.toString.endsWith("!"))}
       case _ => token(x.name <~ '=') ~>
 	    token(StringBasic.examples(x.points map { a => a.toString } toSet)) map { v => (x, x.value(v)) } 
     }
