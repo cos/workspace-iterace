@@ -24,7 +24,7 @@ object helpful {
     l.map(v => if (v < 0.5) 0.5 else v).product,
     1 / (l.size.toDouble))
 
-  def hline = "\n \\hline"
+  def hline = "\\hline"
   def textbf(s: String) = "\\textbf{" + s + "}"
 
   def nl = "\n"
@@ -50,13 +50,11 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     val k = 1000
     val m = k * k
 
-    def f(o: Int, r: Int, let: String) = "" + r / o +
-      (if (r / o < 100) "." + math.round(r % o / (o / 10.0)) else "") +
-      let
+    def f(o: Int, r: Int, let: String) = (if (r * 1.0 / o >= 10) (r / o).toString else "%.1f".format(r * 1.0 / o)) + let
 
     (r match {
       case r if r > m => f(m, r, "M") // + " ~ " + r
-      case r if r > 100 * k => f(k, r, "K") // + " ~ " + r
+      case r if r > 10 * k => f(k, r, "K") // + " ~ " + r
       case _ => r
     }).toString
   }
@@ -65,21 +63,20 @@ class Tabulate(resultsDir: File, apps: List[String]) {
   private def stuff(f: R => Int, format: Int => String, max: String => Int, meanFunction: Option[Iterable[Double] => Double] = None): String = {
     var count = 0
 
-    superset map (s => {
+    smallSuperset map (s => {
       val allSujects = apps map { app => find(data(app), s) map { rr => f(rr) } }
       val mean = meanFunction map { _(apps map { app => find(data(app), s) map { rr => f(rr) } getOrElse max(app) } map { _.toDouble }).toInt }
       count += 1
-      s.toString + // subject
+      s.short + // subject
         " & " + (allSujects map { _ map { format(_) } } map { _ getOrElse "-" } mkString " & ") + // values
-        (mean map { " & " + format(_) } getOrElse "") + " \\\\" + //mean
-        (if (count % 4 == 0) hline else "") + (if (count % 16 == 0) hline else "") // separating lines
-    }) mkString "\n"
+        (mean map { " & " + format(_) } getOrElse "") + " \\\\ \n"
+    }) grouped (4) map { _.mkString } mkString (hline + nl)
   }
 
   private def maxOfRaces(app: String) = (data(app) map { _.races }).max
 
-  private def header(withMean: Boolean = false) = {
-    " & " + apps.mkString(" & ") + (if (withMean) " & Mean" else "") + " \\\\" + hline + nl
+  private def header(extra: String*) = {
+    " & " + (apps ++ extra).mkString(" & ") + "\\\\" + hline + nl
   }
 
   def showData {
@@ -93,9 +90,9 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     }
   }
 
-  def races = header(true) + stuff(r => { r.races }, formatRaceInt, maxOfRaces, Some(ga))
+  def races = header("g.mean") + stuff(r => { r.races }, formatRaceInt, maxOfRaces, Some(ga))
 
-  def times = header(true) + stuff(r => { r.time }, formatTimeInt, app => { 600000 }, Some(ga))
+  def times = header("avg.") + stuff(r => { r.time }, formatTimeInt, app => { 600000 }, Some(ga))
 
   def racesByFeature(f: String) = header() + stuffByFeature(feature(f.head), r => { r.races }, formatRaceInt, maxOfRaces)
 
@@ -107,9 +104,9 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     var count = 0
 
     // !!! reversed - positive is native and the other way around
-    (negative(feature).zip(positive(feature)) map {
+    (negative(feature).zip(positive(feature)) filter { case (s, _) => smallSuperset.contains(s) } map {
       case (sp, sn) => {
-        "\\texttt{" + (sp.sl filter { _.toLowerCase != feature.head.toLowerCase } mkString) + "} & " +
+        "" + (sp.sl filter { f => f.toLowerCase != feature.head.toLowerCase && f != 'd' } mkString) + " & " +
           (apps map { subject =>
             val rp = find(data(subject), sp)
             val rn = find(data(subject), sn)
@@ -130,7 +127,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
         //        print(" & " + format(themean))
         //        (pos, neg, themean.toDouble)
       }
-    } mkString "\n") + hline + nl
+    } mkString "\n") + nl
 
     //    val (pos, neg, theOtherMeans) = bigResults.unzip3
     //    val fullTranspose = (pos.transpose zip neg.transpose)
@@ -184,7 +181,6 @@ class Tabulate(resultsDir: File, apps: List[String]) {
         println(" \\\\")
       }
     }
-    hline
   }
 
   private def times(app: String) = data(app) map { _.time }

@@ -23,6 +23,7 @@ object Organize {
     private val allOnString = List("two-threads", "filtering", "bubble-up", "deep-synchronized", "synchronized")
     private val allOnChar = allOnString map { shorten(_) }
 
+    def short = sl filter { _ != 'd' } mkString
     override def toString = sl.mkString
     val sl = allOnChar map (ss => { if (features.map(shorten(_)).contains(ss)) ss.toUpperCase else ss })
 
@@ -44,7 +45,7 @@ object Organize {
 
     val superset = powerset(full.features).map(s => S(s.toSet)).toList.sortBy(_.toString).reverse
 
-    val smallSuperset = superset filter { _(d) }
+    val smallSuperset = superset filter { !_(d) }
 
     def powerset[T](s: Set[T]): Set[Set[T]] = {
       if (s.tail.isEmpty)
@@ -115,7 +116,7 @@ class Organize(resultsDir: File, apps: List[String]) {
     val stringData = source.mkString
     val jsonData = Js(stringData)
     val data = fromjson[Map[String, Map[String, Map[String, String]]]](jsonData)
-    
+
     for ((projectName, projectData) <- data) yield {
       (projectName,
         (projectData filter { case (_, result) => result.get("timeout") == None } map {
