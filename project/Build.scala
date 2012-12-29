@@ -75,19 +75,22 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   }
 
   lazy val benchTask = Keys.bench <<= InputTask(parser)(benchDef)
-  lazy val benchDef = {parsed: TaskKey[Scenario] => {
-    (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map {
-      bench(_, _, _, _, _, _)
+  lazy val benchDef = { parsed: TaskKey[Scenario] =>
+    {
+      (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map {
+        bench(_, _, _, _, _, _)
+      }
     }
-  }}
-  
+  }
 
-  lazy val racesTask = Keys.races <<= InputTask(parser)(racesDef) 
-  lazy val racesDef = {parsed: TaskKey[Scenario] => {
+  lazy val racesTask = Keys.races <<= InputTask(parser)(racesDef)
+  lazy val racesDef = { parsed: TaskKey[Scenario] =>
+    {
       (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map {
         bench(_, _, _, _, _, _, true)
       }
-    }}
+    }
+  }
 
   lazy val benchAllTask = Keys.benchAll <<= InputTask(parser)(benchAllDef)
   lazy val benchAllDef = (parsed: TaskKey[Scenario]) => {
@@ -104,7 +107,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     }
   }
 
-  def bench(cp: Seq[Attributed[File]], mc: Option[String], r: ScalaRun, streams: TaskStreams, scenario: Scenario, resultsDirectory: File, genRaces:Boolean = false) = {
+  def bench(cp: Seq[Attributed[File]], mc: Option[String], r: ScalaRun, streams: TaskStreams, scenario: Scenario, resultsDirectory: File, genRaces: Boolean = false) = {
     val subject = scenario(subjectAxis).asInstanceOf[String]
     val scenarioIteRaceOptions = scenario filter { case (_: IteRaceOptionAxis, _) => true; case _ => false }
     val options = (scenarioIteRaceOptions map { case (k, v) => k.configPath + "=" + v }).toSeq
@@ -114,12 +117,16 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     val logFile = logDir / ((s.sl map { k => k + (if (k >= 'a') "-" else "_") } mkString) + ".json")
     val racesFile = logDir / ((s.sl map { k => k + (if (k >= 'a') "-" else "_") } mkString) + ".races")
 
+    println(racesFile.getAbsolutePath)
+
     val fullOptions = options ++ Seq(
       "config=" + subject,
       "iterace.log-file=" + logFile,
-      "iterace.timeout=600000") ++ (if (genRaces) Seq("iterace.races-file="+racesFile) else Seq())
+      "iterace.timeout=600000") ++ (if (genRaces) Seq("iterace.races-file=" + racesFile) else Seq())
 
     streams.log.info(options.toString)
     r.run(mc.get, data(cp), fullOptions, streams.log) foreach { streams.log.warn(_) }
+    println()
+    println(IO.read(racesFile))
   }
 }
