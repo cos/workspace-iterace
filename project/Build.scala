@@ -28,9 +28,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
 
   val subjectAxis = StringAxis("subject", "subject",
-    //   List("bh", "coref"))
-    List("em3d", "bh", "mc", "junit", "coref", "lucene"))
-  // List("bh", "coref", "em3d", "lucene", "junit", "mc")) //, "weka"))
+    List("em3d", "bh", "mc", "junit", "coref", "lucene", "weka"))
 
   case class IteRaceOptionAxis(override val name: String) extends BooleanAxis(name, "iterace.options." + name)
 
@@ -126,7 +124,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
 
     streams.log.info(options.toString)
     r.run(mc.get, data(cp), fullOptions, streams.log) foreach { streams.log.warn(_) }
-    println()
-    println(IO.read(racesFile))
+    if (genRaces)
+      println("\n" + IO.read(racesFile))
   }
 }
