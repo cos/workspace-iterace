@@ -1,0 +1,499 @@
+Loop: LBJ2.nlp.coref.ClusterMerger.main(ClusterMerger.java:459)
+
+LBJ2.classify.Score: LBJ2.classify.ScoreSet.put(ScoreSet.java:60)
+ .score
+   (a)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:162)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:163)
+   (b)  LBJ2.classify.Score.compareTo(Score.java:49) [4x]
+        LBJ2.classify.ScoreSet.get(ScoreSet.java:79) [2x]
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:162) [2x]
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:163) [2x] [Object - 3x]
+LBJ2.nlp.Sentence: LBJ2.nlp.SentenceSplitter.process(SentenceSplitter.java:230)
+ .inURL
+   (a)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x]
+   (b)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:484) [4x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:496) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:497) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x] [Object - 2x]
+LBJ2.nlp.Sentence: LBJ2.nlp.SentenceSplitter.process(SentenceSplitter.java:242)
+ .inURL
+   (a)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x]
+   (b)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:484) [4x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:496) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:497) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x] [Object - 2x]
+LBJ2.nlp.Sentence: LBJ2.nlp.coref.Document.splitSentences(Document.java:352)
+ .inURL
+   (a)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x]
+   (b)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:484) [4x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:485) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:496) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:497) [2x]
+        LBJ2.nlp.Sentence.wordSplit(Sentence.java:466) [2x] [Object - 2x]
+LBJ2.nlp.coref.ClusterMerger: LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:167)
+ .clusterNames
+   (a)  LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:169)
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:217) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:165) [4x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:169) [2x]
+ .clusterSizes
+   (a)  LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:171)
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$1(ClusterMerger.java:82)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:171) [2x]
+ .corefScore
+   (a)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:228) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:233) [2x]
+ .depth
+   (a)  LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:178)
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDepth(ClusterMerger.java:157) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:178) [2x]
+ .filter
+   (a)  LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:176)
+   (b)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:176) [2x]
+ .i
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [4x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:174)
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$2(ClusterMerger.java:84)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [12x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:174) [2x]
+ .j
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:175)
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$3(ClusterMerger.java:88)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [4x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [4x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:165) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:173) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:175) [2x]
+ .mergedDocument
+   (a)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:202) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:203) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:209) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:220) [2x]
+ .predicted
+   (a)  LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:168)
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$4(ClusterMerger.java:76)
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:206) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:207) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:208) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:168) [2x] [Object - 2x]
+LBJ2.nlp.coref.ClusterMerger: LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:167)
+ .corefScore
+   (a)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:228) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:233) [2x]
+ .i
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [4x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$2(ClusterMerger.java:84)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [12x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:174) [2x]
+ .j
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$3(ClusterMerger.java:88)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [4x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [4x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:165) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:173) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:175) [2x]
+ .mergedDocument
+   (a)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:202) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:203) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:209) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:220) [2x] [Object - 2x]
+LBJ2.nlp.coref.ClusterMerger: LBJ2.nlp.coref.ClusterMergerParser.next(ClusterMergerParser.java:158)
+ .corefScore
+   (a)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:228) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:230) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getCorefScore(ClusterMerger.java:233) [2x]
+ .i
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [4x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$2(ClusterMerger.java:84)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [12x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:174) [2x]
+ .j
+   (a)  LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.access$3(ClusterMerger.java:88)
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:189) [4x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:192) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [4x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:165) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:170) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:172) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:173) [2x]
+        LBJ2.nlp.coref.ClusterMerger.next(ClusterMerger.java:175) [2x]
+ .mergedDocument
+   (a)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:202) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:203) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:209) [2x]
+        LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:220) [2x] [Object - 2x]
+LBJ2.nlp.coref.Document$Mention: LBJ2.nlp.coref.Document.<init>(Document.java:104)
+ .[*]
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:108)
+   (b)  LBJ2.nlp.coref.Document.checkMention(Document.java:454) [2x]
+        LBJ2.nlp.coref.Document.getAllChains(Document.java:991) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:475) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:476) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:415) [2x]
+        LBJ2.nlp.coref.Document.getStatistics(Document.java:1050) [2x]
+LBJ2.nlp.coref.Document$Mention: LBJ2.nlp.coref.Document.<init>(Document.java:108)
+ .extentWordStart
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1809) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1813) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1809) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1810) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1811) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1813) [4x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1815) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1816) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1819) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1829) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x]
+ .indexInDocument
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1800) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.getIndexInDocument(Document$Mention.java:1911) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1800) [2x]
+ .indexInSentence
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1799) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.getIndexInSentence(Document$Mention.java:1915) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1799) [2x]
+ .indexesSet
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1803) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1791) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1803) [2x]
+ .sentenceIndex
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1798) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.getSentenceIndex(Document$Mention.java:1913) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1798) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1824) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1841) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1870) [2x]
+ .wordIndexInDocument
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1802) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.getWordIndexInDocument(Document$Mention.java:1917) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1802) [2x]
+ .wordIndexInSentence
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1801) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1801) [2x]
+ .wordLength
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1849) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1854) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1849) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1854) [4x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [6x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x] [Object - 2x]
+LBJ2.nlp.coref.Document$Mention: LBJ2.nlp.coref.Document.<init>(Document.java:152)
+ .extentWordStart
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1809) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1813) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1809) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1810) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1811) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1813) [4x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1815) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1816) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1819) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1829) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x]
+ .indexInDocument
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1800) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1800) [2x]
+ .indexInSentence
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1799) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1799) [2x]
+ .indexesSet
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1803) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1791) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1803) [2x]
+ .sentenceIndex
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1798) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1798) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1824) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1841) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1870) [2x]
+ .wordIndexInDocument
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1802) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.getWordIndexInDocument(Document$Mention.java:1917) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1802) [2x]
+ .wordIndexInSentence
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1801) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1801) [2x]
+ .wordLength
+   (a)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1849) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1854) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1849) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1854) [4x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [6x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x] [Object - 2x]
+LBJ2.nlp.coref.Document$Mention: LBJ2.nlp.coref.Document.<init>(Document.java:235)
+ .[*]
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:239)
+   (b)  LBJ2.nlp.coref.Document.<init>(Document.java:104)
+        LBJ2.nlp.coref.Document.<init>(Document.java:108)
+        LBJ2.nlp.coref.Document.<init>(Document.java:111)
+        LBJ2.nlp.coref.Document.<init>(Document.java:112)
+        LBJ2.nlp.coref.Document.<init>(Document.java:113)
+        LBJ2.nlp.coref.Document.checkMention(Document.java:454) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:474) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:475) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:476) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:410) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:414) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:415) [2x]
+        LBJ2.nlp.coref.Document.mentionsInSentence(Document.java:397) [2x]
+LBJ2.nlp.coref.Document$Mention: LBJ2.nlp.coref.Document.<init>(Document.java:92)
+ .[*]
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:104)
+   (b)  LBJ2.nlp.coref.Document.checkMention(Document.java:454) [2x]
+        LBJ2.nlp.coref.Document.getAllChains(Document.java:990) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:474) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:475) [2x]
+        LBJ2.nlp.coref.Document.getCluster(Document.java:476) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:410) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:414) [2x]
+        LBJ2.nlp.coref.Document.getMention(Document.java:415) [2x]
+        LBJ2.nlp.coref.Document.getStatistics(Document.java:1047) [2x]
+        LBJ2.nlp.coref.Document.getStatistics(Document.java:1049) [2x]
+        LBJ2.nlp.coref.Document.mentionsInSentence(Document.java:397) [2x]
+LBJ2.parse.LinkedVector: LBJ2.nlp.coref.Document.<init>(Document.java:156)
+ .[*]
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:158)
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1811) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1816) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1829) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x]
+        LBJ2.nlp.coref.Document.<init>(Document.java:96)
+LBJ2.parse.LinkedVector: LBJ2.nlp.coref.Document.<init>(Document.java:94)
+ .[*]
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:96)
+   (b)  LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1811) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1816) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1829) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1850) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1851) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1856) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1857) [2x]
+        LBJ2.nlp.coref.Document$Mention.setIndexes(Document$Mention.java:1861) [2x]
+Static: LBJ2.nlp.coref.DataCoref
+ .currentScoresFile
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:60)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:58)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:60)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:64)
+ .scores
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+Static: javax.xml.parsers.SAXParserFactory
+ application level
+   (a)  LBJ2.nlp.coref.ACE2004DocumentParser.next(ACE2004DocumentParser.java:115)
+   (b)  LBJ2.nlp.coref.ACE2004DocumentParser.next(ACE2004DocumentParser.java:115)
+java.lang.String: LBJ2.nlp.coref.ClusterMerger.<init>(ClusterMerger.java:138)
+ .[*]
+   (a)  LBJ2.nlp.coref.ClusterMerger.<init>(ClusterMerger.java:140)
+   (b)  LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:217) [2x]
+java.util.HashMap$Values: java.util.HashMap.values(HashMap.java:918)
+ application level
+   (a)  LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [2x]
+   (b)  LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [2x] [Object - 6x]
+java.util.HashMap: LBJ2.classify.ScoreSet.<init>(ScoreSet.java:30)
+ application level
+   (a)  LBJ2.classify.ScoreSet.put(ScoreSet.java:60)
+        LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [2x]
+   (b)  LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [4x]
+java.util.HashMap: LBJ2.classify.ScoreSet.<init>(ScoreSet.java:30)
+ application level
+   (a)  LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [2x]
+   (b)  LBJ2.classify.ScoreSet.toArray(ScoreSet.java:120) [2x]
+java.util.HashMap: LBJ2.classify.TestDiscrete.<init>(TestDiscrete.java:283)
+ application level
+   (a)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+   (b)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:395)
+        LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+java.util.HashMap: LBJ2.classify.TestDiscrete.<init>(TestDiscrete.java:284)
+ application level
+   (a)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+   (b)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:395)
+        LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+java.util.HashMap: LBJ2.classify.TestDiscrete.<init>(TestDiscrete.java:285)
+ application level
+   (a)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+   (b)  LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:395)
+        LBJ2.classify.TestDiscrete.histogramAdd(TestDiscrete.java:397)
+java.util.HashMap: LBJ2.nlp.coref.DataCoref.<clinit>(DataCoref.java:35)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+java.util.HashMap: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+java.util.HashMap: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+java.util.HashMap: LBJ2.nlp.coref.Document.<init>(Document.java:69)
+ application level
+   (a)  LBJ2.nlp.coref.Document.clearCaches(Document.java:292) [2x]
+   (b)  LBJ2.nlp.coref.Document.clearCaches(Document.java:292) [2x] [Object - 2x]
+java.util.HashMap: LBJ2.nlp.coref.Document.<init>(Document.java:74)
+ application level
+   (a)  LBJ2.nlp.coref.Document.clearCaches(Document.java:294) [2x]
+   (b)  LBJ2.nlp.coref.Document.clearCaches(Document.java:294) [2x] [Object - 2x]
+java.util.HashSet: java.lang.ConditionalSpecialCasing.<clinit>(ConditionalSpecialCasing.java:103)
+ application level
+   (a)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+   (b)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1384) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1393)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1154) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1158)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1160)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:895)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:896)
+java.util.LinkedHashSet: LBJ2.nlp.coref.Document.getCluster(Document.java:471)
+ application level
+   (a)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.getCluster(CoreferenceTester.java:1364)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+        LBJ2.nlp.coref.Document.getCluster(Document.java:471)
+        LBJ2.nlp.coref.Document.getCluster(Document.java:476)
+   (b)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1384) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1393)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1154) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1158)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1160)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:895)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:896) [Object - 2x]
+java.util.LinkedHashSet: LBJ2.nlp.coref.Document.getCluster(Document.java:471)
+ application level
+   (a)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+   (b)  LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1384) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1392)
+        LBJ2.nlp.coref.CoreferenceTester.clusterOverlap(CoreferenceTester.java:1393)
+        LBJ2.nlp.coref.CoreferenceTester.clusterToString(CoreferenceTester.java:1409)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1154) [2x]
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1158)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1160)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1172)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1203)
+        LBJ2.nlp.coref.CoreferenceTester.mergeSingletonPronouns(CoreferenceTester.java:1208)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:895)
+        LBJ2.nlp.coref.CoreferenceTester.test(CoreferenceTester.java:896) [Object - 2x]
+java.util.LinkedList: LBJ2.nlp.coref.Document.<init>(Document.java:148)
+ application level
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:232)
+   (b)  LBJ2.nlp.coref.Document.<init>(Document.java:239)
+java.util.LinkedList: LBJ2.nlp.coref.Document.<init>(Document.java:204)
+ application level
+   (a)  LBJ2.nlp.coref.Document.<init>(Document.java:232)
+   (b)  LBJ2.nlp.coref.Document.<init>(Document.java:239)
+null: LBJ2.nlp.Sentence.partOfURL(Sentence.java:485)
+ .[*]
+   (a)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:496) [2x]
+   (b)  LBJ2.nlp.Sentence.partOfURL(Sentence.java:484) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:496) [2x]
+        LBJ2.nlp.Sentence.partOfURL(Sentence.java:497) [2x] [Object - 4x]
+null: LBJ2.nlp.coref.ClusterMerger.<init>(ClusterMerger.java:142)
+ .[*]
+   (a)  LBJ2.nlp.coref.ClusterMerger.<init>(ClusterMerger.java:147)
+   (b)  LBJ2.nlp.coref.ClusterMerger$ClusterDistanceFilter.reject(ClusterMerger$ClusterDistanceFilter.java:882) [2x]
+        LBJ2.nlp.coref.ClusterMerger$ClusterDistanceFilter.reject(ClusterMerger$ClusterDistanceFilter.java:885) [2x]
+        LBJ2.nlp.coref.ClusterMerger$SizeFilter.reject(ClusterMerger$SizeFilter.java:845) [4x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:190) [2x]
+        LBJ2.nlp.coref.ClusterMerger.increment(ClusterMerger.java:194) [2x]
