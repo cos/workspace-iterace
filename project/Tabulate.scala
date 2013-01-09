@@ -114,7 +114,11 @@ class Tabulate(resultsDir: File, apps: List[String]) {
             if (rp.isDefined && rn.isDefined) {
               val before = func(rp.get)
               val after = func(rn.get)
-              ((before - after) * 100.0 / before) toInt
+              //              ((before - after) * 100.0 / before) toInt
+              if (after > 0)
+                "%.2f".format(before * 1.0 / after)
+              else
+                "inf"
             } else
               "-"
 
