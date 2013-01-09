@@ -8,7 +8,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     base = file("."),
     settings = Project.defaultSettings ++
       Seq(benchTask, benchAllTask, resultsDirectorySetting, mergeForTask, mergeAllTask,
-        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask, racesTask))
+        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask, racesTask, compareTask))
     .aggregate(iteRace)
 
   lazy val iteRace = Project(id = "IteRace",
@@ -48,6 +48,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     val tabulateRaces = TaskKey[Unit]("tabulate-races")
     val tabulateTimes = TaskKey[Unit]("tabulate-times")
     val tabulateFeatureRaces = InputKey[Unit]("tabulate-feature-races")
+    val compare = InputKey[Unit]("compare-for")
   }
 
   lazy val resultsDirectorySetting = Keys.resultsDirectory <<= target(_ / "results")
@@ -68,6 +69,19 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     (argTask, Keys.resultsDirectory) map { (args, resultsDir) =>
       args foreach { arg =>
         IO.write(resultsDir / ("races-by-" + arg + ".tex"), Tabulate(resultsDir, subjectAxis.points).racesByFeature(arg))
+      }
+    }
+  }
+
+  lazy val compareTask = Keys.compare <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
+    (argTask, baseDirectory) map { (args, base) =>
+      args foreach { arg =>
+        val resultsDir = base / "results" 
+        resultsDir.mkdirs
+        val iteRaceFile = resultsDir / (arg + "-iterace.json")
+        val jChordFile = resultsDir / (arg + "-jchord.json")
+        
+        Compare.compare(iteRaceFile, jChordFile)
       }
     }
   }
