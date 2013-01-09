@@ -66,7 +66,7 @@ trait Evaluate { self: Build =>
     (((axes map { axis => token(' ' ~> axisParser(axis)) } reduce { _ | _ } *) map { _ toMap }): Parser[Scenario])
 
   def axisParser(x: Axis): Parser[(Axis, Any)] = x match {
-    case x: BooleanAxis => (token(x.name) ~ '!'.?) map { m => (x, !m.toString.endsWith("!")) }
+    case x: BooleanAxis => (token(x.name) ~ '!'.?) map { case (_, bang) => (x, !bang.isDefined) }
     case _ => token(x.name <~ '=') ~>
       token(StringBasic.examples(x.points map { a => a.toString } toSet)) map { v => (x, x.value(v)) }
   }
