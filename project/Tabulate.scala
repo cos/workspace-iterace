@@ -90,7 +90,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     }
   }
 
-  def races = header("g.mean") + stuff(r => { r.races }, formatRaceInt, maxOfRaces, Some(ga))
+  def races = header() + stuff(r => { r.races }, formatRaceInt, maxOfRaces, None)
 
   def times = header("avg.") + stuff(r => { r.time }, formatTimeInt, app => { 600000 }, Some(ga))
 
@@ -99,6 +99,15 @@ class Tabulate(resultsDir: File, apps: List[String]) {
   def timesByFeature(f: String) = header() + stuffByFeature(feature(f.head), r => { r.time }, formatTimeInt, app => { 600000 })
 
   def synchronizationLevelEffect = header() + effectOfSynchronizationLevel(r => { r.races }, formatRaceInt, maxOfRaces)
+  
+  private def formatRatio(before: Float, after:Float) = 
+    if (after > 0)
+                "%.2f".format(before * 1.0 / after)
+              else
+                if(before > 0)
+                	"$\\infty$"
+                else 
+                	"NaN"
 
   private def stuffByFeature(feature: String, func: R => Int, format: Int => String, max: String => Int) = {
     var count = 0
@@ -115,10 +124,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
               val before = func(rp.get)
               val after = func(rn.get)
               //              ((before - after) * 100.0 / before) toInt
-              if (after > 0)
-                "%.2f".format(before * 1.0 / after)
-              else
-                "inf"
+              formatRatio(before, after)
             } else
               "-"
 
@@ -154,11 +160,13 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     val sOnly = positive(S.d) intersect negative(S.s)
     val aOnly = negative(S.d) intersect positive(S.s)
     val both = positive(S.d) intersect positive(S.s)
+    
+    val output = new StringBuffer
 
     // !!! reversed - positive is native and the other way around
     val bigResults = baseline zip sOnly zip aOnly zip both map {
       case (((base, s), a), both) => {
-        println("\\texttt{" + base + "-" + s + "/" + a + "/" + both + "}")
+        output.append("\\texttt{" + base + "-" + s + "/" + a + "/" + both + "}\n")
         val allNormalizedForScenario = for (app <- apps) yield {
           val rbase = find(data(app), base)
           val rs = find(data(app), s)
@@ -166,25 +174,26 @@ class Tabulate(resultsDir: File, apps: List[String]) {
           val rboth = find(data(app), both)
 
           val strs = if (rbase.isDefined && rs.isDefined)
-            format(func(rbase.get) - func(rs.get))
+            formatRatio(func(rbase.get), func(rs.get))
           else
             "-"
 
           val stra = if (rbase.isDefined && ra.isDefined)
-            format(func(rbase.get) - func(ra.get))
+            formatRatio(func(rbase.get) , func(ra.get))
           else
             "-"
 
           val strboth = if (rbase.isDefined && rboth.isDefined)
-            format(func(rbase.get) - func(rboth.get))
+            formatRatio(func(rbase.get) , func(rboth.get))
           else
             "-"
 
-          print(" & " + strs + "/" + stra + "/" + strboth)
+          output.append(" & " + strs + "/" + stra + "/" + strboth)
         }
-        println(" \\\\")
+        output.append(" \\\\\n")
       }
     }
+    output.toString.replace("1.00/1.00/1.00", "1.0").replace("NaN/NaN/NaN", "NaN")
   }
 
   private def times(app: String) = data(app) map { _.time }

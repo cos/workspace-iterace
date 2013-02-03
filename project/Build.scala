@@ -8,7 +8,8 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     base = file("."),
     settings = Project.defaultSettings ++
       Seq(benchTask, benchAllTask, resultsDirectorySetting, mergeForTask, mergeAllTask,
-        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask, racesTask, compareTask))
+        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask,
+        racesTask, compareTask, tabulateSyncComparisonTask, tabulateAllTask, prepareCilibTask))
     .aggregate(iteRace)
 
   lazy val iteRace = Project(id = "IteRace",
@@ -28,12 +29,14 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
 
   val subjectAxis = StringAxis("subject", "subject",
-    List("em3d", "bh", "mc", "junit", "coref", "lucene", "weka"))
+    List("em3d", "mc", "junit", "coref", "lucene", "weka", "cilib")) // "bh"
 
   case class IteRaceOptionAxis(override val name: String) extends BooleanAxis(name, "iterace.options." + name)
 
+  lazy val techniques = List("two-threads", "filtering", "bubble-up", "deep-synchronized", "synchronized")
+
   def axes = List(subjectAxis) ++ (
-    List("two-threads", "filtering", "bubble-up", "deep-synchronized", "synchronized") map { axisName =>
+    techniques map { axisName =>
       IteRaceOptionAxis(axisName)
     })
 
@@ -48,7 +51,10 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     val tabulateRaces = TaskKey[Unit]("tabulate-races")
     val tabulateTimes = TaskKey[Unit]("tabulate-times")
     val tabulateFeatureRaces = InputKey[Unit]("tabulate-feature-races")
+    val tabulateSyncComparison = TaskKey[Unit]("tabulate-sync-comparison")
     val compare = InputKey[Unit]("compare-for")
+    val tabulateAll = TaskKey[Unit]("tabulate-all")
+    val prepareCilib = TaskKey[Unit]("prepare-cilib")
   }
 
   lazy val resultsDirectorySetting = Keys.resultsDirectory <<= target(_ / "results")
@@ -58,13 +64,30 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     subjectAxis.points foreach { o.mergeJSonForSubject(_) }
     o.mergeAll
   }
+
+  lazy val tabulateAllTask = Keys.tabulateAll <<= (Keys.mergeAll, Keys.tabulateRaces, Keys.tabulateTimes, Keys.resultsDirectory) map {
+    case (_, _, _, resultsDir) =>
+      techniques foreach { arg =>
+        IO.write(resultsDir / ("races-by-" + arg + ".tex"), Tabulate(resultsDir, subjectAxis.points).racesByFeature(arg))
+      }
+  }
+
   lazy val showDataTask = Keys.showData <<= (Keys.resultsDirectory) map { Tabulate(_, subjectAxis.points).showData }
+
+  lazy val prepareCilibTask = Keys.prepareCilib <<= (baseDirectory) map { baseDirectory =>
+    PrepareCilib.go(baseDirectory)
+  }
+
   lazy val tabulateRacesTask = Keys.tabulateRaces <<= (Keys.resultsDirectory) map { resultsDir =>
     IO.write(resultsDir / "races.tex", Tabulate(resultsDir, subjectAxis.points).races)
   }
   lazy val tabulateTimesTask = Keys.tabulateTimes <<= (Keys.resultsDirectory) map { resultsDir =>
     IO.write(resultsDir / "times.tex", Tabulate(resultsDir, subjectAxis.points).times)
   }
+  lazy val tabulateSyncComparisonTask = Keys.tabulateSyncComparison <<= (Keys.resultsDirectory) map { resultsDir =>
+    IO.write(resultsDir / "sync-comparison.tex", Tabulate(resultsDir, subjectAxis.points).synchronizationLevelEffect)
+  }
+
   lazy val tabulateFeatureRacesTask = Keys.tabulateFeatureRaces <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
     (argTask, Keys.resultsDirectory) map { (args, resultsDir) =>
       args foreach { arg =>
@@ -76,11 +99,11 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val compareTask = Keys.compare <<= inputTask { (argTask: TaskKey[Seq[String]]) =>
     (argTask, baseDirectory) map { (args, base) =>
       args foreach { arg =>
-        val resultsDir = base / "results" 
+        val resultsDir = base / "results"
         resultsDir.mkdirs
         val iteRaceFile = resultsDir / (arg + "-iterace.json")
         val jChordFile = resultsDir / (arg + "-jchord.json")
-        
+
         Compare.compare(iteRaceFile, jChordFile)
       }
     }
@@ -98,9 +121,14 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val racesTask = Keys.races <<= InputTask(parser)(racesDef)
   lazy val racesDef = { parsed: TaskKey[Scenario] =>
     {
-      (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map {
-        bench(_, _, _, _, _, _, true)
-      }
+      (fullClasspath in iteRace in Compile,
+        mainClass in iteRace,
+        benchRunner in iteRace,
+        streams,
+        parsed,
+        Keys.resultsDirectory) map {
+          bench(_, _, _, _, _, _, true)
+        }
     }
   }
 
@@ -134,7 +162,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     val fullOptions = options ++ Seq(
       "config=" + subject,
       "iterace.log-file=" + logFile,
-      "iterace.timeout=600000") ++ (if (genRaces) Seq("iterace.races-file=" + racesFile) else Seq())
+      "iterace.timeout=1200000") ++ (if (genRaces) Seq("iterace.races-file=" + racesFile) else Seq())
 
     streams.log.info(options.toString)
     r.run(mc.get, data(cp), fullOptions, streams.log) foreach { streams.log.warn(_) }
