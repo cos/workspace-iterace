@@ -1,0 +1,94 @@
+Loop: LBJ2.nlp.coref.ClusterMerger.main(ClusterMerger.java:459)
+
+// Score is cloned cleanly
+#F LBJ2.classify.Score: LBJ2.classify.ScoreSet.put(ScoreSet.java:60)
+ .score
+   (a)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:162)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:163)
+   (b)  LBJ2.classify.Score.compareTo(Score.java:49) [4x]
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:162) [2x]
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:163) [2x] [Object - 3x]
+
+// Probably a race with a constructor instruction
+#F LBJ2.classify.ScoreSet: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:85)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+   (b)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// -- 
+#F LBJ2.classify.ScoreSet: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+   (b)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// -- 
+#F LBJ2.classify.ScoreSet: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:88)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+   (b)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// --
+#F LBJ2.classify.ScoreSet: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+   (b)  LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// the document is created by a parser and there is a unique object per thread
+#F LBJ2.nlp.coref.Document: LBJ2.nlp.coref.ClusterMerger.getDocument(ClusterMerger.java:204)
+ application level
+   (a)  LBJ2.nlp.coref.CorefAction.compute(CorefAction.java:142)
+   (b)  LBJ2.nlp.coref.CorefAction.compute(CorefAction.java:142) [Object - 4x]
+
+// static fields
+#T Static: LBJ2.nlp.coref.DataCoref
+ .currentScoresFile
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:60)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:58)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:60)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:64)
+ .scores
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// accessed to a java class that is documented as not thread-safe
+#T Static: javax.xml.parsers.SAXParserFactory
+ application level
+   (a)  LBJ2.nlp.coref.ACE2004DocumentParser.next(ACE2004DocumentParser.java:115)
+   (b)  LBJ2.nlp.coref.ACE2004DocumentParser.next(ACE2004DocumentParser.java:115)
+
+// a static field holding an unsynchronized HashSet
+#T java.util.HashMap: LBJ2.nlp.coref.DataCoref.<clinit>(DataCoref.java:35)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// --
+#T java.util.HashMap: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)
+
+// -- 
+#T java.util.HashMap: LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:69)
+ application level
+   (a)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+   (b)  LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:83)
+        LBJ2.nlp.coref.DataCoref.readData(DataCoref.java:86)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:156)
+        LBJ2.nlp.coref.DataCoref.scores(DataCoref.java:161)

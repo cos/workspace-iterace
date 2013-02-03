@@ -1,0 +1,133 @@
+
+Loop: org.dacapo.lusearch.Search.main(Search.java:146)
+
+#F Static: org.apache.lucene.util.ReaderUtil
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.gatherSubReaders(IndexSearcher.java:126)
+   (b)  org.apache.lucene.search.IndexSearcher.gatherSubReaders(IndexSearcher.java:126)
+#F Static: org.apache.lucene.util.StringHelper
+ application level
+   (a)  org.apache.lucene.search.TermRangeTermEnum.<init>(TermRangeTermEnum.java:79)
+   (b)  org.apache.lucene.search.TermRangeTermEnum.<init>(TermRangeTermEnum.java:79)
+#F java.io.StringReader: org.apache.lucene.queryParser.QueryParser.getFieldQuery(QueryParser.java:567)
+ application level
+   (a)  org.apache.lucene.analysis.Tokenizer.close(Tokenizer.java:71) [2x]
+   (b)  org.apache.lucene.analysis.Tokenizer.close(Tokenizer.java:71) [2x]
+#F java.io.StringReader: org.apache.lucene.queryParser.QueryParser.getFieldQuery(QueryParser.java:570)
+ application level
+   (a)  org.apache.lucene.analysis.Tokenizer.close(Tokenizer.java:71) [2x]
+   (b)  org.apache.lucene.analysis.Tokenizer.close(Tokenizer.java:71) [2x]
+#F org.apache.lucene.analysis.standard.StandardTokenizer: org.apache.lucene.analysis.standard.StandardAnalyzer.reusableTokenStream(StandardAnalyzer.java:323)
+ .input
+   (a)  org.apache.lucene.analysis.Tokenizer.reset(Tokenizer.java:88) [2x]
+   (b)  org.apache.lucene.analysis.Tokenizer.close(Tokenizer.java:71) [2x]
+        org.apache.lucene.analysis.Tokenizer.correctOffset(Tokenizer.java:81) [4x]
+        org.apache.lucene.analysis.Tokenizer.reset(Tokenizer.java:88) [2x]
+org.apache.lucene.search.BooleanQuery: org.apache.lucene.queryParser.QueryParser.newBooleanQuery(QueryParser.java:806)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.BooleanQuery: org.apache.lucene.search.FuzzyQuery.rewrite(FuzzyQuery.java:163)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.BooleanQuery: org.apache.lucene.search.MultiPhraseQuery.rewrite(MultiPhraseQuery.java:257)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.BooleanQuery: org.apache.lucene.search.MultiTermQuery$ConstantScoreAutoRewrite.rewrite(MultiTermQuery.java:250)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.BooleanQuery: org.apache.lucene.search.MultiTermQuery$ScoringBooleanQueryRewrite.rewrite(MultiTermQuery.java:102)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.ConstantScoreQuery: org.apache.lucene.search.MultiTermQuery$ConstantScoreAutoRewrite.rewrite(MultiTermQuery.java:242)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.ConstantScoreQuery: org.apache.lucene.search.MultiTermQuery$ConstantScoreAutoRewrite.rewrite(MultiTermQuery.java:256)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.FuzzyQuery: org.apache.lucene.queryParser.QueryParser.newFuzzyQuery(QueryParser.java:864)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.MatchAllDocsQuery: org.apache.lucene.queryParser.QueryParser.newMatchAllDocsQuery(QueryParser.java:886)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.MultiPhraseQuery: org.apache.lucene.queryParser.QueryParser.newMultiPhraseQuery(QueryParser.java:841)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.PhraseQuery: org.apache.lucene.queryParser.QueryParser.newPhraseQuery(QueryParser.java:833)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.PrefixQuery: org.apache.lucene.queryParser.QueryParser.newPrefixQuery(QueryParser.java:850)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.TermQuery: org.apache.lucene.queryParser.QueryParser.newTermQuery(QueryParser.java:825)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.FuzzyQuery.rewrite(FuzzyQuery.java:130)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.FuzzyQuery.rewrite(FuzzyQuery.java:167)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.MultiPhraseQuery.rewrite(MultiPhraseQuery.java:259)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.MultiTermQuery$ConstantScoreAutoRewrite.rewrite(MultiTermQuery.java:252)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.MultiTermQuery$ScoringBooleanQueryRewrite.rewrite(MultiTermQuery.java:108)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.TermQuery: org.apache.lucene.search.WildcardQuery.rewrite(WildcardQuery.java:61)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308) [Object - 2x]
+org.apache.lucene.search.TermRangeQuery: org.apache.lucene.queryParser.QueryParser.newRangeQuery(QueryParser.java:876)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.search.WildcardQuery: org.apache.lucene.queryParser.QueryParser.newWildcardQuery(QueryParser.java:895)
+ application level
+   (a)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:307)
+        org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+        org.apache.lucene.search.Searcher.createWeight(Searcher.java:230)
+   (b)  org.apache.lucene.search.IndexSearcher.rewrite(IndexSearcher.java:308)
+org.apache.lucene.util.AttributeSource$AttributeFactory$DefaultAttributeFactory: org.apache.lucene.util.AttributeSource$AttributeFactory.<clinit>(AttributeSource.java:56)
+ application level
+   (a)  org.apache.lucene.analysis.TokenStream$TokenWrapperAttributeFactory.createAttributeInstance(TokenStream.java:151)
+   (b)  org.apache.lucene.analysis.TokenStream$TokenWrapperAttributeFactory.createAttributeInstance(TokenStream.java:151)
