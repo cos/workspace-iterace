@@ -15,9 +15,9 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val iteRace = Project(id = "IteRace",
     base = file("IteRace"),
     settings = Project.defaultSettings ++
-      Seq(benchRunnerTask,
-        baseDirectory in benchRunner := new File("."),
-        unmanagedResourceDirectories in Compile += new File("project/subjects").getAbsoluteFile))
+      Seq(scalaVersionSetting, benchRunnerTask, 
+        baseDirectory in benchRunner := new File(".")))//,
+//        unmanagedResourceDirectories in Compile += new File("project/subjects").getAbsoluteFile)) // comment this line to sbt-eclipse
     .dependsOn(
       util,
       walaFacade,
@@ -25,6 +25,8 @@ object WorkspaceBuild extends Build with Common with Evaluate {
       walaShrike,
       walaCore,
       parallelArrayMock)
+      
+  lazy val scalaVersionSetting = scalaVersion := "2.10.0"
 
   lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
 
