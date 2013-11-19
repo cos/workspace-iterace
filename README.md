@@ -1,6 +1,6 @@
 ## Instalation
 
-1. git clone https://github.com/cos/iterace-workspace.git
+1. git clone https://github.com/cos/workspace-iterace.git
 2. cd iterace-workspace
 3. git submodule init
 4. git submodule update
