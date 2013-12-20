@@ -4,36 +4,54 @@ import Build.data
 import java.io.File
 
 object WorkspaceBuild extends Build with Common with Evaluate {
+
+  val dependencyOnIteRace = libraryDependencies ++= Seq(
+    "University of Illinois" %% "iterace" % "0.5")
+    
+  val iteRaceMainClass = mainClass := Some("iterace.IteRace")
+  
+  val mavenResolver = resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+  
+  val addSubjects = unmanagedResourceDirectories in Compile += new File("project/subjects").getAbsoluteFile
+  
+  val baseDirectoryForBenchRunner = baseDirectory in benchRunner := new File(".")
+
   lazy val workspace = Project(id = "workspace",
     base = file("."),
-    settings = Project.defaultSettings ++
+    settings = Project.defaultSettings ++ dependencyOnIteRace ++
       Seq(benchTask, benchAllTask, resultsDirectorySetting, mergeForTask, mergeAllTask,
         showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask,
-        racesTask, compareTask, tabulateSyncComparisonTask, tabulateAllTask, prepareCilibTask))
-    .aggregate(iteRace)
+        racesTask, compareTask, tabulateSyncComparisonTask, tabulateAllTask, prepareCilibTask, iteRaceMainClass, 
+        benchRunnerTask, baseDirectoryForBenchRunner, mavenResolver, addSubjects))
 
-  lazy val iteRace = Project(id = "IteRace",
-    base = file("IteRace"),
-    settings = Project.defaultSettings ++
-      Seq(scalaVersionSetting, benchRunnerTask, 
-        baseDirectory in benchRunner := new File(".")))//,
-//        unmanagedResourceDirectories in Compile += new File("project/subjects").getAbsoluteFile)) // comment this line to sbt-eclipse
-    .dependsOn(
-      util,
-      walaFacade,
-      walaUtil,
-      walaShrike,
-      walaCore,
-      parallelArrayMock)
-      
-  lazy val scalaVersionSetting = scalaVersion := "2.10.0"
+  //  lazy val iteRace = Project(id = "IteRace",
+  //    base = file("IteRace"),
+  //    settings = Project.defaultSettings ++
+  //      Seq(scalaVersionSetting, benchRunnerTask, 
+//          baseDirectory in benchRunner := new File(".")))//,
+  //        unmanagedResourceDirectories in Compile += new File("project/subjects").getAbsoluteFile)) // comment this line to sbt-eclipse
+  //    .dependsOn(
+  //      util,
+  //      walaFacade,
+  //      walaUtil,
+  //      walaShrike,
+  //      walaCore,
+  //      parallelArrayMock)
 
-  lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
+  lazy val scalaVersionSetting = scalaVersion := "2.10"
+
+  //  lazy val parallelArrayMock = Project(id = "ParallelArray-mock", base = file("lib/parallelArray.mock"))
 
   val subjectAxis = StringAxis("subject", "subject",
     List("em3d", "mc", "junit", "coref", "lucene", "weka", "cilib")) // "bh"
 
-  case class IteRaceOptionAxis(override val name: String) extends BooleanAxis(name, "iterace.options." + name)
+  object IteRaceOptionAxis {
+    def apply(name: String) = BooleanAxis(name, "iterace.options." + name)
+    def unapply(b: BooleanAxis) = b match {
+      case BooleanAxis(name, longName) if longName.startsWith("iterace.options.") => Some(name)
+      case _ => None
+    }
+  }
 
   lazy val techniques = List("two-threads", "filtering", "bubble-up", "deep-synchronized", "synchronized")
 
@@ -114,7 +132,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val benchTask = Keys.bench <<= InputTask(parser)(benchDef)
   lazy val benchDef = { parsed: TaskKey[Scenario] =>
     {
-      (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map {
+      (fullClasspath in Compile, mainClass, benchRunner, streams, parsed, Keys.resultsDirectory) map {
         bench(_, _, _, _, _, _)
       }
     }
@@ -123,9 +141,9 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val racesTask = Keys.races <<= InputTask(parser)(racesDef)
   lazy val racesDef = { parsed: TaskKey[Scenario] =>
     {
-      (fullClasspath in iteRace in Compile,
-        mainClass in iteRace,
-        benchRunner in iteRace,
+      (fullClasspath in Compile,
+        mainClass,
+        benchRunner,
         streams,
         parsed,
         Keys.resultsDirectory) map {
@@ -136,7 +154,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
 
   lazy val benchAllTask = Keys.benchAll <<= InputTask(parser)(benchAllDef)
   lazy val benchAllDef = (parsed: TaskKey[Scenario]) => {
-    (fullClasspath in iteRace in Compile, mainClass in iteRace, benchRunner in iteRace, streams, parsed, Keys.resultsDirectory) map { (cp, mc, r, streams, scenario, resultsDir) =>
+    (fullClasspath in Compile, mainClass, benchRunner, streams, parsed, Keys.resultsDirectory) map { (cp, mc, r, streams, scenario, resultsDir) =>
       Scenario.enumerate(axes) filter { s => s.matches(scenario) } foreach { s =>
         bench(cp, mc, r, streams, s, resultsDir)
       }
@@ -151,7 +169,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
 
   def bench(cp: Seq[Attributed[File]], mc: Option[String], r: ScalaRun, streams: TaskStreams, scenario: Scenario, resultsDirectory: File, genRaces: Boolean = false) = {
     val subject = scenario(subjectAxis).asInstanceOf[String]
-    val scenarioIteRaceOptions = scenario filter { case (_: IteRaceOptionAxis, _) => true; case _ => false }
+    val scenarioIteRaceOptions = scenario filter { case (IteRaceOptionAxis(_), _) => true; case _ => false }
     val options = (scenarioIteRaceOptions map { case (k, v) => k.configPath + "=" + v }).toSeq
     val s = Organize.S(scenarioIteRaceOptions collect { case (IteRaceOptionAxis(name), true) => name } toSet)
     val logDir = resultsDirectory / subject

@@ -75,6 +75,6 @@ trait Evaluate { self: Build =>
 
   lazy val benchRunnerTask = benchRunner <<= (scalaInstance, baseDirectory in benchRunner, javaOptions, outputStrategy, javaHome, connectInput) map {
     (si, base, options, strategy, javaHomeDir, connectIn) =>
-      new ForkRun(ForkOptions(scalaJars = si.jars, javaHome = javaHomeDir, connectInput = connectIn, outputStrategy = strategy, runJVMOptions = options, workingDirectory = Some(base)))
+      new ForkRun(ForkOptions(javaHomeDir, strategy, si.jars, Some(base), options, connectIn))
   }
 }

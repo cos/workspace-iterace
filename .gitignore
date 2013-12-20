@@ -5,3 +5,8 @@ target/
 /project/.classpath
 /bedrock_log.log
 /benchmarks/
+.classpath
+
+.project
+
+/compare/

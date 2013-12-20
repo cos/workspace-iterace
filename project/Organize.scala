@@ -25,7 +25,7 @@ object Organize {
 
     def short = sl filter { _ != 'd' } mkString
     override def toString = sl.mkString
-    val sl = allOnChar map (ss => { if (features.map(shorten(_)).contains(ss)) ss.toUpperCase else ss })
+    val sl = allOnChar map (ss => { if (features.map(shorten(_)).contains(ss)) ss.toUpper else ss })
 
     def apply(feature: String) = features.contains(feature)
 
@@ -56,7 +56,7 @@ object Organize {
       }
     }
 
-    def feature(feat: Char): String = feat.toLowerCase match {
+    def feature(feat: Char): String = feat.toLower match {
       case 't' => t
       case 'f' => f
       case 'b' => b
@@ -77,13 +77,13 @@ class Organize(resultsDir: File, apps: List[String]) {
       val source = scala.io.Source.fromFile(file)
       val data = source.mkString
       val scenario = file.name.split('.').head.replace("_", "").replace("-", "")
-      try {
+//      try {
         val jsondata = Js(data)
         val results = fromjson[Map[String, String]](jsondata)
         (if (scenario == "") "NONE" else scenario, results)
-      } catch {
-        case _ => null
-      }
+//      } catch {
+//        case _  => null
+//      }
     }) filter { _ != null } toMap
 
     println(newData.size)
@@ -122,7 +122,7 @@ class Organize(resultsDir: File, apps: List[String]) {
         (projectData filter { case (_, result) => result.get("timeout") == None } map {
           case (scenario, result) =>
             var r = result filter { case (k, _) => k != "timeout" } mapValues (_.toInt)
-            R(S(scenario filter { _.isUpperCase } map { S.feature(_) } toSet),
+            R(S(scenario filter { _.isUpper } map { S.feature(_) } toSet),
               r.filterKeys(!_.contains("time")),
               r.filterKeys(_.contains("time")))
         }) toList)

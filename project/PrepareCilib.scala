@@ -7,7 +7,7 @@ object PrepareCilib {
     val walaXmlDir = cilibXmlDir / "wala"
 
     //    (cilibXmlDir * "*.xml").get foreach { file =>
-    val file = (cilibXmlDir * "*.xml").get first
+    val file = (cilibXmlDir * "*.xml").get head
     
     println("Processing: " + file)
     val xml = scala.xml.XML.loadFile(file)

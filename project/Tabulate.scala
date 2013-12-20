@@ -115,7 +115,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     // !!! reversed - positive is native and the other way around
     (negative(feature).zip(positive(feature)) filter { case (s, _) => smallSuperset.contains(s) } map {
       case (sp, sn) => {
-        "" + (sp.sl filter { f => f.toLowerCase != feature.head.toLowerCase && f != 'd' } mkString) + " & " +
+        "" + (sp.sl filter { f => f.toLower != feature.head.toLower && f != 'd' } mkString) + " & " +
           (apps map { subject =>
             val rp = find(data(subject), sp)
             val rn = find(data(subject), sn)
@@ -203,7 +203,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     case _ => false
   }
 
-  private def negative(feature: String) = superset -- positive(feature)
+  private def negative(feature: String) = superset diff positive(feature)
 
   import scala.math._
   def differences {
