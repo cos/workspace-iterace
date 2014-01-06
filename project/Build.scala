@@ -19,8 +19,9 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val workspace = Project(id = "workspace",
     base = file("."),
     settings = Project.defaultSettings ++ dependencyOnIteRace ++
-      Seq(benchTask, benchAllTask, resultsDirectorySetting, mergeForTask, mergeAllTask,
-        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateFeatureRacesTask,
+      Seq(benchTask, benchAllTask, javaOptions ++= Seq("-Xmx8G", "-Xms1G","-XX:PermSize=1g", "-XX:MaxPermSize=1g"),
+        resultsDirectorySetting, mergeForTask, mergeAllTask,
+        showDataTask, tabulateRacesTask, tabulateTimesTask, tabulateTimesDrillDownTask, tabulateFeatureRacesTask,
         racesTask, compareTask, tabulateSyncComparisonTask, tabulateAllTask, prepareCilibTask, iteRaceMainClass, 
         benchRunnerTask, baseDirectoryForBenchRunner, mavenResolver, addSubjects))
 
@@ -70,6 +71,7 @@ object WorkspaceBuild extends Build with Common with Evaluate {
     val showData = TaskKey[Unit]("show-data")
     val tabulateRaces = TaskKey[Unit]("tabulate-races")
     val tabulateTimes = TaskKey[Unit]("tabulate-times")
+    val tabulateTimesDrillDown = TaskKey[Unit]("tabulate-times-drilldown")
     val tabulateFeatureRaces = InputKey[Unit]("tabulate-feature-races")
     val tabulateSyncComparison = TaskKey[Unit]("tabulate-sync-comparison")
     val compare = InputKey[Unit]("compare-for")
@@ -104,6 +106,9 @@ object WorkspaceBuild extends Build with Common with Evaluate {
   lazy val tabulateTimesTask = Keys.tabulateTimes <<= (Keys.resultsDirectory) map { resultsDir =>
     IO.write(resultsDir / "times.tex", Tabulate(resultsDir, subjectAxis.points).times)
   }
+  lazy val tabulateTimesDrillDownTask = Keys.tabulateTimesDrillDown <<= (Keys.resultsDirectory) map { resultsDir =>
+    IO.write(resultsDir / "times-drill-down.tex", Tabulate(resultsDir, subjectAxis.points).timesDrillDown)
+  }  
   lazy val tabulateSyncComparisonTask = Keys.tabulateSyncComparison <<= (Keys.resultsDirectory) map { resultsDir =>
     IO.write(resultsDir / "sync-comparison.tex", Tabulate(resultsDir, subjectAxis.points).synchronizationLevelEffect)
   }
@@ -183,8 +188,8 @@ object WorkspaceBuild extends Build with Common with Evaluate {
       "config=" + subject,
       "iterace.log-file=" + logFile,
       "iterace.timeout=1200000") ++ (if (genRaces) Seq("iterace.races-file=" + racesFile) else Seq())
-
-    streams.log.info(options.toString)
+    streams.log.info("********\n"+subject+"\n********\n")
+    streams.log.info(options.toString)    
     r.run(mc.get, data(cp), fullOptions, streams.log) foreach { streams.log.warn(_) }
     if (genRaces)
       println("\n" + IO.read(racesFile))

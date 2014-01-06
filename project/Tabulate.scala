@@ -24,7 +24,7 @@ object helpful {
     l.map(v => if (v < 0.5) 0.5 else v).product,
     1 / (l.size.toDouble))
 
-  def hline = "\\hline"
+  def hline = "\\finerule"
   def textbf(s: String) = "\\textbf{" + s + "}"
 
   def nl = "\n"
@@ -45,6 +45,7 @@ class Tabulate(resultsDir: File, apps: List[String]) {
   private val data = organize.readData(resultsDir)
 
   private def formatTimeInt(t: Int) = t / 1000 + "." + t % 1000 / 100
+  private def formatTimeIntPrecise(t: Int) = t / 1000 + "." + t % 1000 / 10
 
   private def formatRaceInt(r: Int) = {
     val k = 1000
@@ -63,11 +64,11 @@ class Tabulate(resultsDir: File, apps: List[String]) {
   private def stuff(f: R => Int, format: Int => String, max: String => Int, meanFunction: Option[Iterable[Double] => Double] = None): String = {
     var count = 0
 
-    smallSuperset map (s => {
+    superset filter { _(d) } map (s => {
       val allSujects = apps map { app => find(data(app), s) map { rr => f(rr) } }
       val mean = meanFunction map { _(apps map { app => find(data(app), s) map { rr => f(rr) } getOrElse max(app) } map { _.toDouble }).toInt }
       count += 1
-      s.short + // subject
+      s.dotStyle + // subject
         " & " + (allSujects map { _ map { format(_) } } map { _ getOrElse "-" } mkString " & ") + // values
         (mean map { " & " + format(_) } getOrElse "") + " \\\\ \n"
     }) grouped (4) map { _.mkString } mkString (hline + nl)
@@ -75,8 +76,8 @@ class Tabulate(resultsDir: File, apps: List[String]) {
 
   private def maxOfRaces(app: String) = (data(app) map { _.races }).max
 
-  private def header(extra: String*) = {
-    " & " + (apps ++ extra).mkString(" & ") + "\\\\" + hline + nl
+  private def header(prefix: Seq[String] = Seq(), suffix: Seq[String] = Seq()) = {
+    (prefix ++ apps ++ suffix).mkString(" & ") + "\\\\\\midrule" + nl
   }
 
   def showData {
@@ -90,11 +91,32 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     }
   }
 
-  def races = header() + stuff(r => { r.races }, formatRaceInt, maxOfRaces, None)
+  def races = header(prefix = Seq("T","F","B","S")) + stuff(r => { r.races }, formatRaceInt, maxOfRaces, None)
+  
+  // there was an issue with the nesting of time logging and deep-synchronized-time was content twice - this fixes the
+  // result errors stemming from that issue
+  // (not used anymore below)
+  def timeFix(r: R) = r.times.get("deep-synchronized-time").orElse(r.times.get("app-level-synchronized-time")).getOrElse(0)
 
-  def times = header("avg.") + stuff(r => { r.time }, formatTimeInt, app => { 600000 }, Some(ga))
+  def times = header(prefix = Seq("T","F","B","S"), suffix = Seq("avg.")) + stuff(r => { r.time }, formatTimeInt, app => { 600000 }, Some(ga))
+  
+  def timesDrillDown = { 
+    val resultsForAllActive = apps flatMap { app => find(data(app), S(Set(t, f, b, s))) }
+    
+    val lines:Seq[String] = Seq("pointer-analysis-time","potential-races-time","locksets-time","app-level-synchronized-time","bubble-up-time") map {
+        lookForTime =>
+          lookForTime.replaceAll("-"," ") + " & " + 
+            (resultsForAllActive map { r => formatTimeInt(if(lookForTime=="locksets-time") r.times("app-level-synchronized-time") else 0) } mkString " & ")
+        } 
+      
+    val linesWithTotal:Seq[String] = lines ++ Seq("Total & " + (resultsForAllActive map { r => formatTimeInt(r.time) } mkString " & "))
+      
+    val tex = header(prefix = Seq("Stage")) + (linesWithTotal mkString "  \\\\\n")
+    println(tex)
+    tex
+  }
 
-  def racesByFeature(f: String) = header() + stuffByFeature(feature(f.head), r => { r.races }, formatRaceInt, maxOfRaces)
+  def racesByFeature(f: String) = header(Seq("T","F","B","S") diff Seq(f.head.toUpper.toString)) + stuffByFeature(feature(f.head), r => { r.races }, formatRaceInt, maxOfRaces)
 
   def timesByFeature(f: String) = header() + stuffByFeature(feature(f.head), r => { r.time }, formatTimeInt, app => { 600000 })
 
@@ -111,11 +133,13 @@ class Tabulate(resultsDir: File, apps: List[String]) {
 
   private def stuffByFeature(feature: String, func: R => Int, format: Int => String, max: String => Int) = {
     var count = 0
+    
+    
 
     // !!! reversed - positive is native and the other way around
-    (negative(feature).zip(positive(feature)) filter { case (s, _) => smallSuperset.contains(s) } map {
+    (negative(Set("deep-synchronized","synchronized")).zip(positive(Set("deep-synchronized","synchronized"))) map {
       case (sp, sn) => {
-        "" + (sp.sl filter { f => f.toLower != feature.head.toLower && f != 'd' } mkString) + " & " +
+        "" + dotStyle(sp.sl filter { f => f.toLower != feature.head.toLower && f != 'd' } mkString) + " & " +
           (apps map { subject =>
             val rp = find(data(subject), sp)
             val rn = find(data(subject), sn)
@@ -202,8 +226,14 @@ class Tabulate(resultsDir: File, apps: List[String]) {
     case s: S if s(feature) => true
     case _ => false
   }
+  
+  private def positive(features: Set[String]) = superset.filter {
+    case s: S if !features.exists(!s(_)) => true
+    case _ => false
+  }
 
   private def negative(feature: String) = superset diff positive(feature)
+  private def negative(features: Set[String]) = superset diff positive(features)  
 
   import scala.math._
   def differences {

@@ -17,6 +17,8 @@ object Organize {
     override def toString = "R(" + s + ", " + races + ", " + time + ")"
   }
 
+
+  def dotStyle(short: String) = short map {case c => if (c.isUpper) "\\bl" else ""} mkString "&"
   // scenario
   case class S(features: Set[String]) {
 
@@ -26,6 +28,8 @@ object Organize {
     def short = sl filter { _ != 'd' } mkString
     override def toString = sl.mkString
     val sl = allOnChar map (ss => { if (features.map(shorten(_)).contains(ss)) ss.toUpper else ss })
+    
+    def dotStyle = Organize.dotStyle(short)
 
     def apply(feature: String) = features.contains(feature)
 
@@ -78,6 +82,7 @@ class Organize(resultsDir: File, apps: List[String]) {
       val data = source.mkString
       val scenario = file.name.split('.').head.replace("_", "").replace("-", "")
 //      try {
+        println("Merging "+file)
         val jsondata = Js(data)
         val results = fromjson[Map[String, String]](jsondata)
         (if (scenario == "") "NONE" else scenario, results)
