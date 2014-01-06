@@ -1,5 +1,5 @@
 import java.io.FileWriter
-import dispatch.json.Js
+import dispatch.classic.json.Js
 import sjson.json._
 import DefaultProtocol._
 import JsonSerialization._

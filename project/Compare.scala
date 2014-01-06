@@ -1,5 +1,5 @@
 
-import dispatch.json.Js
+import dispatch.classic.json.Js
 import java.io.File
 import sjson.json._
 import DefaultProtocol._
